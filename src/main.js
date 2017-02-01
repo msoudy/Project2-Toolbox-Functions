@@ -165,7 +165,6 @@ function onLoad(framework) {
     camera.position.set(0, 1, 5);
     camera.lookAt(new THREE.Vector3(0,0,0));
 
-    // scene.add(lambertCube);
     scene.add(directionalLight);
 
     // edit params and listen to changes like this
@@ -183,7 +182,7 @@ function onLoad(framework) {
 	
 	var f6 = gui.addFolder('Wing Curve');
 	
-	f6.add(config, 'curvature').min(0.0).max(2);
+	f6.add(config, 'curvature').min(0.0).max(1.0);
 	
 	
 	var f1 = gui.addFolder('Wing Color');
@@ -292,12 +291,12 @@ function onLoad(framework) {
 	
 	var f4 = gui.addFolder('Flapping Configuration');
 	
-	f4.add(config, 'flapping_speed', 1, 10).onChange( function(speed){});
-	f4.add(config, 'flapping_motion', 1, 10).onChange( function(motion){});
+	f4.add(config, 'flapping_speed', 1, 5).onChange( function(speed){});
+	f4.add(config, 'flapping_motion', 1, 3).onChange( function(motion){});
 	
 	var f5 = gui.addFolder('Feather Distribution');
 	
-	f5.add(config, 'distribution').min(1).max(10).step(1);	
+	f5.add(config, 'distribution').min(1).max(3).step(1);	
 	
 }
 
@@ -323,9 +322,9 @@ function updateFeatherPostions() {
 	
 	mainFeatherCurve = new THREE.CubicBezierCurve3(
 		new THREE.Vector3( 0 , 0, 0 ),
-		new THREE.Vector3( 1 + config.curvature, start, 0 + config.curvature ), 
-		new THREE.Vector3( 1.5 + config.curvature, middle, -1  - config.curvature),
-		new THREE.Vector3( 2.5 + config.curvature, end, -0.9 + config.curvature) 
+		new THREE.Vector3( 1 , start, 0 + config.curvature ), 
+		new THREE.Vector3( 1.5 , middle, -1  + config.curvature),
+		new THREE.Vector3( 2.5 , end, -0.9 - config.curvature) 
 	);
 	
 	var tempNum = mainFeatherGeometry.vertices.length;
@@ -334,7 +333,7 @@ function updateFeatherPostions() {
 	var numSmallFeathers = mainFeatherGeometry.vertices.length/2;
 	
 	
-	/*if (mainFeatherGeometry.vertices.length > tempNum) {
+	if (mainFeatherGeometry.vertices.length > tempNum) {
 		
 		if (scene)
 		{		
@@ -411,7 +410,7 @@ function updateFeatherPostions() {
 			scene.add(all_feathers);
 		}
 	
-	} else {*/
+	} else {
 		
 		for (var i in all_feathers.children) {
 
@@ -445,7 +444,7 @@ function updateFeatherPostions() {
 
 		}
 		
-	//}
+	}
 
 }
 
