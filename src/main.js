@@ -182,7 +182,7 @@ function onLoad(framework) {
 	
 	var f6 = gui.addFolder('Wing Curve');
 	
-	f6.add(config, 'curvature').min(0.0).max(1.0);
+	f6.add(config, 'curvature').min(0).max(0.5);
 	
 	
 	var f1 = gui.addFolder('Wing Color');
@@ -292,7 +292,7 @@ function onLoad(framework) {
 	var f4 = gui.addFolder('Flapping Configuration');
 	
 	f4.add(config, 'flapping_speed', 1, 5).onChange( function(speed){});
-	f4.add(config, 'flapping_motion', 1, 3).onChange( function(motion){});
+	f4.add(config, 'flapping_motion', 1, 2).onChange( function(motion){});
 	
 	var f5 = gui.addFolder('Feather Distribution');
 	
